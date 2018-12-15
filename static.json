@@ -5,7 +5,7 @@
   },
   "proxies" : {
     "/api" : {
-      "origin" : "https://cryptic-anchorage-33729.herokuapp.com"
+      "origin" : "https://cryptic-anchorage-33729.herokuapp.com/api"
     }
   }
 }
