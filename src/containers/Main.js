@@ -3,6 +3,7 @@ import {connect} from "react-redux"
 import Signup from "../components/Signup"
 import Signin from "../components/Signin"
 import Home from "../components/Home"
+import Loader from "../components/Loader";
 import {Switch, Route, withRouter} from "react-router-dom"
 import {authUser} from "../store/actions/auth"
 import {removeError} from "../store/actions/errors"
@@ -10,9 +11,10 @@ import withAuth from "../hocs/withAuth"
 import MessageForm from "./MessageForm"
 
 const Main = (props) => {
-  const {authUser, errors, removeError, currentUser} = props
+  const {authUser, errors, removeError, currentUser, loader} = props
   return (
     <div className="Main">
+      <Loader isLoading={loader} />
       <Switch>
         <Route 
           exact path="/" 
@@ -38,7 +40,8 @@ const Main = (props) => {
 
 const mapStateToProps = (state) => ({
   currentUser : state.currentUser,
-  errors : state.errors
+  errors : state.errors,
+  loader: state.loader,
 })
 
 

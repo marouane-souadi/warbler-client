@@ -1,11 +1,12 @@
 import {apiCall, setTokenHeader} from "../../services/api"
 import {SET_CURRENT_USER} from "../actionTypes"
 import {addError, removeError} from "./errors"
+import {addLoader, removeLoader} from "./loader";
 
 const API_URL = "/api"
 
 export const setCurrentUser = (user) => ({
-  type : SET_CURRENT_USER,
+  type: SET_CURRENT_USER,
   user
 })
 
@@ -21,8 +22,9 @@ export const logout = () => {
 }
 
 export const authUser = (type, userData) => {
-  return dispatch => new Promise((resolve, reject)=> {
-    return apiCall("post",API_URL+"/auth/"+type, userData)
+  return dispatch => new Promise((resolve, reject) => {
+    dispatch(addLoader());
+    return apiCall("post", API_URL + "/auth/" + type, userData)
       .then(({token, ...user}) => {
         localStorage.setItem("jwtToken", token)
         setAuthorizationToken(token)
@@ -30,9 +32,12 @@ export const authUser = (type, userData) => {
         dispatch(removeError())
         resolve()
       })
-      .catch(err=> {
+      .catch(err => {
         dispatch(addError(err.message))
         reject()
+      })
+      .finally(() => {
+        dispatch(removeLoader());
       })
   })
 }
