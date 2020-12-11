@@ -1,4 +1,4 @@
-###### Warbler-Client (Twitter clone project)
+# Warbler-Client (Twitter clone project)
 using :
 - create-react-app
 - materialize css
