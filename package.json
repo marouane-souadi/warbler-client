@@ -14,7 +14,7 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },
-  "proxy": "http://localhost:8081",
+  "proxy": "https://cryptic-anchorage-33729.herokuapp.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
